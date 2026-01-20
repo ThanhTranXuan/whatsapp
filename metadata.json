@@ -1,0 +1,5 @@
+{
+  "name": "WhatsApp-Frontend",
+  "description": "A WhatsApp-style realtime chat application featuring a Gemini-powered AI assistant, responsive design, and mock data integration.",
+  "requestFramePermissions": []
+}
