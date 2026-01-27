@@ -5,7 +5,7 @@
  * Nó tự động gắn Token vào Header.
  */
 
-const BASE_URL = 'http://localhost:8080/api/v1'; // Địa chỉ Backend Spring Boot của bạn
+const BASE_URL = 'http://localhost:8080'; // Địa chỉ Backend Spring Boot của bạn
 
 // Helper để lấy token từ LocalStorage
 const getToken = () => localStorage.getItem('accessToken');

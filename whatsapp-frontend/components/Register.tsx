@@ -3,15 +3,16 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 export const Register: React.FC = () => {
-  const { register, isLoading, error, setCurrentView } = useAuth();
+  const { register, isLoading, error,success, setCurrentView } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username && password && fullName) {
-      register({ username, password, fullName });
+    if (username && password && fullName&&email) {
+      register({ username, password, fullName,email });
     }
   };
 
@@ -36,44 +37,59 @@ export const Register: React.FC = () => {
               {error}
             </div>
           )}
-
+          {/* HIỂN THỊ THÀNH CÔNG (màu xanh - chuẩn style WhatsApp) */}
+            {success && (
+                <div className="mb-6 p-3 bg-[#e7fce3] text-[#008069] text-sm rounded border border-[#c1f4b8]">
+                    {success} - Đang chuyển hướng về Đăng nhập...
+                </div>
+            )}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="relative group">
-                <label className="text-xs text-[#008069] font-bold absolute -top-2 left-2 bg-white px-1">Họ và tên</label>
-                <input
-                    type="text"
-                    required
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#00a884] focus:ring-1 focus:ring-[#00a884] outline-none transition-all bg-white text-[#111b21] placeholder-gray-400"
-                    placeholder="Nhập họ tên hiển thị"
-                />
-            </div>
-
-            <div className="relative group">
-                <label className="text-xs text-[#008069] font-bold absolute -top-2 left-2 bg-white px-1">Tài khoản</label>
+                <label className="text-xs text-[#008069] font-bold absolute -top-2 left-2 bg-white px-1">UserName</label>
                 <input
                     type="text"
                     required
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#00a884] focus:ring-1 focus:ring-[#00a884] outline-none transition-all bg-white text-[#111b21] placeholder-gray-400"
-                    placeholder="Tên đăng nhập"
+                    placeholder="Nhập UserName"
                 />
             </div>
             
             <div className="relative group">
-                <label className="text-xs text-[#008069] font-bold absolute -top-2 left-2 bg-white px-1">Mật khẩu</label>
+                <label className="text-xs text-[#008069] font-bold absolute -top-2 left-2 bg-white px-1">Password</label>
                 <input
                     type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#00a884] focus:ring-1 focus:ring-[#00a884] outline-none transition-all bg-white text-[#111b21] placeholder-gray-400"
-                    placeholder="Mật khẩu"
+                    placeholder="Nhập Password"
+                />
+            </div>
+            <div className="relative group">
+                <label className="text-xs text-[#008069] font-bold absolute -top-2 left-2 bg-white px-1">FullName</label>
+                <input
+                    type="text"
+                    required
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#00a884] focus:ring-1 focus:ring-[#00a884] outline-none transition-all bg-white text-[#111b21] placeholder-gray-400"
+                    placeholder="Nhập FullName"
                 />
             </div>
 
+            <div className="relative group">
+                <label className="text-xs text-[#008069] font-bold absolute -top-2 left-2 bg-white px-1">Email</label>
+                <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-md focus:border-[#00a884] focus:ring-1 focus:ring-[#00a884] outline-none transition-all bg-white text-[#111b21] placeholder-gray-400"
+                    placeholder="example@email.com"
+                />
+            </div>
             <button
               type="submit"
               disabled={isLoading}
